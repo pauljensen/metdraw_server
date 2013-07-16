@@ -1,0 +1,17 @@
+
+- var name = "Your name"
+
+html
+    head
+        title Upload a file
+        link(rel='stylesheet', href='http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css')
+    body
+        div.container
+            div.row-fluid
+                div.span2
+                div.span10
+                    form(action="/upload", method="post", enctype="multipart/form-data")
+                        fieldset
+                            h1 Upload a metabolic reconstruction in SBML format.
+                            input(type="file", name="sbml")
+                            input.btn.primary.btn-large(type="submit", value="Upload")

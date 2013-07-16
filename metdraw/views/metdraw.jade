@@ -1,0 +1,90 @@
+
+html
+    head
+        title MetDraw
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.css')
+        style
+            .form-horizontal .control-label { width: 250px; }
+            .form-horizontal .controls { margin-left: 275px; }
+    body
+        input#sessionid(type="hidden",value=sessionid)
+        div.container
+            h1 Welcome to MetDraw
+            ul#main-tabs.nav.nav-tabs
+                li.active
+                    a(href="#instructions-tab", data-toggle="tab") Instructions
+                li
+                    a(href="#parameters-tab", data-toggle="tab") Parameters
+                li
+                    a(href="#minors-tab", data-toggle="tab") Select Minors
+                li
+                    a(href="#render-tab", data-toggle="tab") Render
+            div.tab-content
+                div#instructions-tab.tab-pane.active
+                    | The instructions go here.
+                div#parameters-tab.tab-pane
+                    form#parameters.form-horizontal
+                        each param,key in params
+                            unless (syntax[key].show === "none")
+                                div.control-group
+                                    label.control-label(for="#{key}") #{key}
+                                    div.controls
+                                        if (syntax[key].show === "text")
+                                            if (syntax[key].type === "string")
+                                                input(type="text", id="#{key}", value="#{param}",
+                                                      data-type="#{syntax[key].type}",
+                                                      data-name="#{key}")
+                                            else
+                                                input.input-small(type="text", id="#{key}", value="#{param}",
+                                                                  data-type="#{syntax[key].type}",
+                                                                  data-name="#{key}")
+
+                                        if (syntax[key].show === "checkbox")
+                                            if (param)
+                                                input(type="checkbox", checked="true",
+                                                      data-type="#{syntax[key].type}",
+                                                      data-name="#{key}")
+                                            else
+                                                input(type="checkbox",
+                                                      data-type="#{syntax[key].type}",
+                                                      data-name="#{key}")
+
+                                        if (syntax[key].show === "textarea")
+                                            textarea.span4(rows="6",
+                                                           data-type="#{syntax[key].type}",
+                                                           data-name="#{key}") #{JSON.stringify(param)}
+
+
+                div#minors-tab.tab-pane
+                    table.table.table-hover.table-condensed.table-bordered
+                        thead
+                            tr
+                                td
+                                    b Minor?
+                                td
+                                    b # of reactions
+                                td
+                                    b Metabolite ID
+                        tbody
+                            each count in counts
+                                tr
+                                    td
+                                        if (count.minor)
+                                            input.minor(type="checkbox", checked="#{is_checked}",
+                                                        data-name="#{count.name}",
+                                                        data-count="#{count.count}")
+                                        else
+                                            input.minor(type="checkbox",
+                                                        data-name="#{count.name}",
+                                                        data-count="#{count.count}")
+                                    td #{count.count}
+                                    td #{count.name}
+                div#render-tab.tab-pane
+                    input#send_minors.btn.primary.btn-large(type="submit", value="Send Data")
+
+
+
+script(src="http://code.jquery.com/jquery-1.7.2.min.js")
+script(src="/bootstrap/js/bootstrap.min.js")
+script(src="/javascripts/metdraw_client.js")
