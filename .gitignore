@@ -15,4 +15,5 @@ npm-debug.log
 .idea
 
 metdraw/public/data/*
+metdraw/node_modules/*
 
