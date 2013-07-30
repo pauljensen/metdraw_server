@@ -12,7 +12,9 @@ var util = require('../public/javascripts/main_utils.js');
 
 var get_session_id = function(file) {
     // TODO:  find a non-blocking way to do this
-    return execSync("echo '" + file.path + file.lastModifiedDate +  "' | openssl sha1");
+    var pieces = execSync("echo '" + file.path + file.lastModifiedDate +  "' | openssl sha1").split(" ");
+    console.log(pieces[pieces.length-1]);
+    return pieces[pieces.length-1];
 }
 
 exports.fileupload = function(req, res){
