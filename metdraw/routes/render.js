@@ -1,9 +1,10 @@
 
 var util = require('../public/javascripts/main_utils.js');
+var config = require('../public/javascripts/config.js');
 
 exports.render = function(req, res) {
     var sessionid = req.params.sessionid;
-    var cmd = '--dotcmd /usr/local/bin/dot -c sbml.xml.params.json -M sbml.xml.mets.json sbml.xml';
+    var cmd = '--dotcmd ' + config.DOT_CMD + ' -c sbml.xml.params.json -M sbml.xml.mets.json sbml.xml';
 
     util.write_local_json(sessionid, "METDRAW_STATUS.json", {running: true, outputby: "write local"});
     console.log("finished writing status file");

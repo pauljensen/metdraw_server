@@ -9,6 +9,7 @@
 var fs = require('fs');
 var proc = require('child_process');
 
+var config = require('./config.js');
 
 var get_session_path = function(sessionid) {
     return 'public/data/' + sessionid;
@@ -56,7 +57,7 @@ exports.mvFileSync = function(oldfilename,newfilename) {
 }
 
 exports.metdraw = function(sessionid, args, callback) {
-    var cmd = 'python2 ~/Dropbox/work/metdraw/src/metdraw.py ' + args;
+    var cmd = config.PYTHON_CMD + ' ' + config.METDRAW_PATH + '/src/metdraw.py ' + args;
     proc.exec(cmd,{cwd:get_session_path(sessionid)},callback);
 }
 
