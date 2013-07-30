@@ -1,17 +1,44 @@
-
-- var name = "Your name"
-
 html
     head
-        title Upload a file
-        link(rel='stylesheet', href='http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css')
+        title MetDraw: Automated metabolic maps and data visualization
+        link(href="bootstrap/css/bootstrap.min.css", rel="stylesheet")
+        link(href="bootstrap/css/bootstrap-responsive.min.css", rel="stylesheet")
+        link(href="bootstrap/css/docs.css", rel="stylesheet")
+        style
+            .hero-unit {
+                background-image: url("images/banner_small_opacity20.png");
+                height: 200px;
+                text-align: center;
+            }
+            .hero-unit h1 {
+                font-size: 80px;
+                font-weight: bold;
+                letter-spacing: -1px;
+                line-height: 1;
+            }
     body
-        div.container
-            div.row-fluid
-                div.span2
-                div.span10
-                    form(action="/upload", method="post", enctype="multipart/form-data")
-                        fieldset
-                            h1 Upload a metabolic reconstruction in SBML format.
-                            input(type="file", name="sbml")
-                            input.btn.primary.btn-large(type="submit", value="Upload")
+        div.hero-unit
+            h1 MetDraw
+            h2 Automated metabolic maps and data visualization.
+
+        div.container.marketing
+            div.row
+                div.span4
+                    h2 How it works.
+                    p Read how MetDraw automatically creates maps of metabolic networks.
+                    p
+                        a.btn(href="clone ecoli") Read more
+                div.span4
+                    h2 Map your network.
+                    p Upload your metabolic network and let MetDraw draw a map for you.
+                    p
+                        a.btn(href="start") Get started
+                div.span4
+                    h2 Download MetDraw
+                    p Get the MetDraw source code, read the documentation, and suggest new features on our GitHub site.
+                    p
+                        a.btn(href="http://www.github.com/pauljensen/metdraw") Visit GitHub
+
+        footer.footer
+            div.container
+                p MetDraw is maintained by the Computational Systems Biology Laboratory, Department of Biomedical Engineering, University of Virginia.

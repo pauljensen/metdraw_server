@@ -1,0 +1,28 @@
+
+html
+    head
+        title MetDraw: Upload a file
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.css')
+        script(src="/javascripts/jquery-1.7.2.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")
+    body
+        div.container
+            center
+                h1 Welcome to MetDraw
+                    form(action="/upload", method="post", enctype="multipart/form-data")
+                        input#sbml(type="file", name="sbml", style="display:none")
+                        input#go(type="submit", value="Upload", style="display:none")
+                        h3 Upload a metabolic reconstruction in SBML format.
+                        a.btn.btn-primary.btn-large#get(onclick="$('input[id=sbml]').click();") Choose a File
+                        div#message
+                        script(type="text/javascript")
+                            $('input[id=sbml]').change(function(){
+                                $('#dummy').val($(this).val());
+                                $('#go').click();
+                                $('#get').attr('disabled','disabled');
+                                $('#sbml').attr('disabled','disabled');
+                                $('#message').html('<br><div class="alert alert-success">Uploading...</div>');
+                            });
+
+

@@ -1,21 +1,124 @@
 {
-          "COMPARTMENT_FONTSIZE" : { "type": "number",  "show": "text" },
-            "SUBSYSTEM_FONTSIZE" : { "type": "number",  "show": "text" },
-            "CLUSTER_SUBSYSTEMS" : { "type": "boolean", "show": "checkbox" },
-        "SUBSYSTEM_BORDER_STYLE" : { "type": "string",  "show": "text" },
-                   "CLONE_LEVEL" : { "type": "number",  "show": "text" },
-                   "LINK_CLONES" : { "type": "boolean", "show": "checkbox" },
-              "CLONE_LINK_ATTRS" : { "type": "object",  "show": "textarea" },
-          "INVISIBLE_NODE_ATTRS" : { "type": "object",  "show": "textarea" },
-                    "EDGE_ATTRS" : { "type": "object",  "show": "textarea" },
-                     "MET_ATTRS" : { "type": "object",  "show": "textarea" },
-               "MINOR_MET_ATTRS" : { "type": "object",  "show": "textarea" },
-                "CLUSTER_MINORS" : { "type": "boolean", "show": "checkbox" },
-                   "SHOW_MINORS" : { "type": "boolean", "show": "checkbox" },
-                "SHOW_EXCHANGES" : { "type": "boolean", "show": "checkbox" },
-                    "MAX_MINORS" : { "type": "number",  "show": "text" },
-                       "COMPACT" : { "type": "boolean", "show": "checkbox" },
-    "METABOLITE_LABEL_TRANSFORM" : { "type": "string",  "show": "text" },
-      "REACTION_LABEL_TRANSFORM" : { "type": "string",  "show": "text" },
-            "MINOR_MET_FRACTION" : { "type": "number",  "show": "none" }
+    "CLUSTER_SUBSYSTEMS" : {
+        "type": "boolean",
+        "show": "checkbox",
+        "label": "Cluster subsystems",
+        "help" : "Draw and label each subsystem separately."
+    },
+
+    "SHOW_EXCHANGES" : {
+        "type": "boolean",
+        "show": "checkbox",
+        "label": "Show exchanges",
+        "help" : "Draw transport and exchange reactions for each compartment."
+    },
+
+    "COMPACT" : {
+        "type": "boolean",
+        "show": "checkbox",
+        "label": "Compact",
+        "help" : "Attempt to draw reactions more compactly."
+    },
+
+    "SHOW_MINORS" : {
+        "type": "boolean",
+        "show": "checkbox",
+        "label": "Show minors",
+        "help" : "Include minor metabolites for each reaction."
+    },
+    "CLUSTER_MINORS" : {
+        "type": "boolean",
+        "show": "checkbox",
+        "label": "Cluster minors",
+        "help" : "Try to keep minor metabolites close together in each reaction."
+    },
+    "MAX_MINORS" : {
+        "type": "number",
+        "show": "text",
+        "label": "Max minors",
+        "help" : "Maximum number of minor metabolites drawn on each reaction.  Additional minors are listed, not drawn."
+    },
+    "MINOR_MET_FRACTION" : {
+        "type": "number",
+        "show": "none",
+        "label": "Minor metabolite fraction",
+        "help" : "Fraction of reactions that a metabolite must participate in to be considered minor by default."
+    },
+
+    "CLONE_LEVEL" : {
+        "type": "number",
+        "show": "text",
+        "label": "Clone level",
+        "help" : "Major metabolites in a subsystem that participate in this many reactions will be <i>cloned</i> and drawn separately."
+    },
+    "LINK_CLONES" : {
+        "type": "boolean",
+        "show": "checkbox",
+        "label": "Link clones",
+        "help" : "Connect cloned metabolites with a line."
+    },
+    "CLONE_LINK_ATTRS" : {
+        "type": "object",
+        "show": "textarea",
+        "label": "Clone link attributes",
+        "help" : "Graphviz parameters for drawing the lines between clones."
+    },
+
+    "COMPARTMENT_FONTSIZE" : {
+        "type": "number",
+        "show": "text",
+        "label": "Compartment label fontsize",
+        "help" : "Font size for compartment labels."
+    },
+    "SUBSYSTEM_FONTSIZE" : {
+        "type": "number",
+        "show": "text",
+        "label": "Subsystem label fontsize",
+        "help" : "Font size for subsystem labels."
+    },
+    "SUBSYSTEM_BORDER_STYLE" : {
+        "type": "string",
+        "show": "text",
+        "label": "Subsystem border style",
+        "help" : "Graphviz style for drawing borders around subsystems."
+    },
+
+    "EDGE_ATTRS" : {
+        "type": "object",
+        "show": "textarea",
+        "label": "Edge attributes",
+        "help" : "Graphviz parameters for drawing edges."
+    },
+    "MET_ATTRS" : {
+        "type": "object",
+        "show": "textarea",
+        "label": "Metabolite attributes",
+        "help" : "Graphviz parameters for drawing major metabolites."
+    },
+    "MINOR_MET_ATTRS" : {
+        "type": "object",
+        "show": "textarea",
+        "label": "Minor metabolite attributes",
+        "help" : "Graphviz parameters for drawing minor metabolites."
+    },
+    "INVISIBLE_NODE_ATTRS" : {
+        "type": "object",
+        "show": "textarea",
+        "label": "Invisible node attributes",
+        "help" : "Graphviz parameters for drawing hidden nodes."
+    },
+
+
+    "METABOLITE_LABEL_TRANSFORM" : {
+        "type": "string",
+        "show": "text",
+        "label": "Metabolite label transform",
+        "help" : "Python function applied to each metabolite ID to create the label text.  The default transformation leaves the name unchanged."
+    },
+    "REACTION_LABEL_TRANSFORM" : {
+        "type": "string",
+        "show": "text",
+        "label": "Reaction label transform",
+        "help" : "Python function applied to each reaction ID to create the label text.  The default transformation leaves the name unchanged."
+    }
 }

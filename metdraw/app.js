@@ -7,6 +7,8 @@ var express = require('express')
   , upload = require('./routes/fileupload')
   , metdraw = require('./routes/metdraw')
   , upload_json = require('./routes/upload_json')
+  , render = require('./routes/render')
+  , clone = require('./routes/clone')
   , http = require('http')
   , path = require('path');
 
@@ -34,9 +36,14 @@ app.get('/', function(req, res) {
     res.render('index', { title: 'Metdraw' });
 });
 
-app.post('/upload', upload.fileupload)
-app.get('/metdraw/:sessionid', metdraw.metdraw)
-app.post('/upload_json/:sessionid/:filename', upload_json.upload_json)
+app.post('/upload', upload.fileupload);
+app.get('/metdraw/:sessionid', metdraw.metdraw);
+app.post('/upload_json/:sessionid/:filename', upload_json.upload_json);
+app.post('/render/:sessionid', render.render);
+app.get('/clone/:sessionid', clone.clone);
+app.get('/start', function(req, res) {
+    res.render('start');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

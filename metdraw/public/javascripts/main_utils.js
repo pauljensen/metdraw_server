@@ -7,6 +7,7 @@
  */
 
 var fs = require('fs');
+var proc = require('child_process');
 
 
 var get_session_path = function(sessionid) {
@@ -29,6 +30,12 @@ exports.write_remote_json = function(sessionid, filename, json_data) {
     })
 };
 
+exports.read_remote_json = function(sessionid, filename) {
+    var return_data;
+    $.getJSON('/data/' + sessionid + '/' + filename, function(data) {return_data = data;});
+    return return_data;
+}
+
 exports.write_local_json = function(sessionid, filename, json_data) {
     fs.writeFileSync(get_session_filename(sessionid, filename), JSON.stringify(json_data) + '\n')
 };
@@ -46,4 +53,17 @@ exports.mvFileSync = function(oldfilename,newfilename) {
     var data = fs.readFileSync(oldfilename);
     fs.writeFileSync(newfilename,data);
 
+}
+
+exports.metdraw = function(sessionid, args, callback) {
+    var cmd = 'python2 ~/Dropbox/work/metdraw/src/metdraw.py ' + args;
+    proc.exec(cmd,{cwd:get_session_path(sessionid)},callback);
+}
+
+exports.count_mets = function(sessionid, callback) {
+    exports.metdraw(sessionid, '--count_mets --json sbml.xml', callback);
+}
+
+exports.test_metdraw = function(sessionid, callback) {
+    exports.metdraw(sessionid, '--norun --show sbml.xml', callback);
 }

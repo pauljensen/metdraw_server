@@ -27,15 +27,27 @@ exports.fileupload = function(req, res){
                   util.get_session_filename(sessionid, 'sbml.xml'));
 
     // TODO: generate this file with metdraw
-    util.mvFileSync('public/sbml.xml.mets.json', util.get_session_filename(sessionid,'sbml.xml.mets.json'));
+    //util.mvFileSync('public/sbml.xml.mets.json', util.get_session_filename(sessionid,'sbml.xml.mets.json'));
     util.mvFileSync('public/metdraw_defaults.json', util.get_session_filename(sessionid,'sbml.xml.params.json'));
     util.mvFileSync('public/metdraw_defaults_syntax.json', util.get_session_filename(sessionid,'params_syntax.json'));
 
+    util.count_mets(sessionid, function() {true;});
+
+    //util.test_metdraw(sessionid, function(error, stdout, stderr) {
+    //    //res.write(error);
+    //    res.write(stdout);
+    //    res.write(stderr);
+    //    res.end();
+    //});
+
     // redirect to the main metdraw page
-    res.writeHead(301, {
-        'Location': 'metdraw/' + sessionid
+    util.test_metdraw(sessionid, function(error, stdout, stderr) {
+        res.writeHead(301, {
+            'Location': 'metdraw/' + sessionid
+        });
+        res.end();
     });
-    res.end();
+
 };
 
 
