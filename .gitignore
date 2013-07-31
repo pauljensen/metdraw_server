@@ -16,4 +16,5 @@ npm-debug.log
 
 metdraw/public/data/*
 metdraw/node_modules/*
+metdraw/public/javascripts/config.js
 
