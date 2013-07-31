@@ -1,4 +1,6 @@
 
+var execSync = require('exec-sync');
+
 var util = require('../public/javascripts/main_utils.js');
 var config = require('../public/javascripts/config.js');
 
@@ -15,6 +17,7 @@ exports.render = function(req, res) {
                 console.log('finished main run');
                 console.log(error);
                 console.log(stderr);
+                execSync(config.PREVIEW_CMD);
                 util.write_local_json(sessionid, "METDRAW_STATUS.json", {running: false, outputby: "callback"});
                 console.log('finished updating status file');
             });

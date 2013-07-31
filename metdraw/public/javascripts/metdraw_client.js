@@ -25,6 +25,7 @@ $(document).ready(function() {
         $('#results').html('<div class="alert alert-success"><h4>MetDraw completed rendering.</h4>' +
             '  You can download the map <a href="' + loc + '">here</a>.</div>');
         $('#render').removeAttr('disabled');
+        $('#preview').html('<h4>Preview</h4><img href="/data/' + sessionid + '/sbml.xml.dot.png">');
     }
 
     var monitor = function() {
