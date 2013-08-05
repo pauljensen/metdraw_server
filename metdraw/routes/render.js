@@ -1,5 +1,5 @@
 
-var execSync = require('exec-sync');
+var proc = require('child_process');
 
 var util = require('../public/javascripts/main_utils.js');
 var config = require('../public/javascripts/config.js');
@@ -17,9 +17,10 @@ exports.render = function(req, res) {
                 console.log('finished main run');
                 console.log(error);
                 console.log(stderr);
-                execSync(config.PREVIEW_CMD);
-                util.write_local_json(sessionid, "METDRAW_STATUS.json", {running: false, outputby: "callback"});
-                console.log('finished updating status file');
+                proc.exec(config.PREVIEW_CMD,{cwd:util.get_session_path(sessionid)}, function() {
+                    util.write_local_json(sessionid, "METDRAW_STATUS.json", {running: false, outputby: "callback"});
+                    console.log('finished updating status file');
+                });
             });
     }
 
