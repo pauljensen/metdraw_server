@@ -25,7 +25,8 @@ $(document).ready(function() {
         $('#results').html('<div class="alert alert-success"><h4>MetDraw completed rendering.</h4>' +
             '  You can download the map <a href="' + loc + '">here</a>.</div>');
         $('#render').removeAttr('disabled');
-        $('#preview').html('<h4>Preview</h4><img href="/data/' + sessionid + '/sbml.xml.dot.png">');
+        $('#preview').html('<h4>Preview</h4><img src="/data/' + sessionid + '/sbml.xml.dot.png"' + 
+			   'alt="No preview available.">');
     }
 
     var monitor = function() {
@@ -34,6 +35,7 @@ $(document).ready(function() {
             $('#status').html('<div class="alert alert-block"><h4>MetDraw is running.</h4>' +
                 'Last check was ' + Date() + '.' +
                 '<br><p>You can return to this page later to check on your map.</p></div>');
+            $('#preview').html('');
             window.setTimeout(monitor, 5000);
         } else {
             display_results();
